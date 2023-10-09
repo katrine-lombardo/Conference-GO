@@ -1,4 +1,4 @@
-function createCard(title, description, pictureUrl) {
+function createCard(title, description, pictureUrl, starts, ends) {
     return `
         <div class="card"
             style="box-shadow: 0 1px 2px rgba(0,0,0,0.07),
@@ -8,13 +8,13 @@ function createCard(title, description, pictureUrl) {
             0 16px 32px rgba(0,0,0,0.07),
             0 32px 64px rgba(0,0,0,0.07);
             margin-bottom: 3em;
-            "
-        >
-        <img src="${pictureUrl}" class="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">${title}</h5>
-            <p class="card-text">${description}</p>
-        </div>
+            ">
+            <img src="${pictureUrl}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">${title}</h5>
+                <p class="card-text">${description}</p>
+            </div>
+            <div class="card-footer">${starts} - ${ends}</div>
         </div>
     `;
 }
@@ -43,12 +43,17 @@ window.addEventListener('DOMContentLoaded', async () => {
             const title = details.conference.name;
             const description = details.conference.description;
             const pictureUrl = details.conference.location.picture_url;
-            const html = createCard(title, description, pictureUrl);
-            columns[columnIndex].innerHTML += html
-            columnIndex = (columnIndex + 1) % columnsPerRow
-            // const row = document.querySelector('.row');
-            // row.innerHTML += html;
+            const oldStarts = new Date(details.conference.starts);
+            const starts = oldStarts.toLocaleDateString("en-US")
+            console.log(starts)
+            const oldEnds = new Date(details.conference.ends);
+            const ends = oldEnds.toLocaleDateString("en-US")
+            console.log(starts)
 
+            const html = createCard(title, description, pictureUrl, starts, ends);
+            console.log(html);
+            columns[columnIndex].innerHTML += html;
+            columnIndex = (columnIndex + 1) % columnsPerRow;
           }
         }
 
