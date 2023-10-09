@@ -24,6 +24,11 @@ window.addEventListener("DOMContentLoaded", async () => {
         // Conference description
         const descriptionTag = document.querySelector(".card-text");
         descriptionTag.innerHTML = details.conference.description;
+        console.log(details)
+
+        // Conference image
+        const imageTag = document.querySelector('.card-img-top');
+        imageTag.src = details.conference.location.picture_url;
       }
     }
   } catch (e) {
