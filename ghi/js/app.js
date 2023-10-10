@@ -20,15 +20,32 @@ function createCard(title, description, pictureUrl, starts, ends, location) {
     `;
 }
 
+
+function createError(status, statusText) {
+  return `
+    <div class="alert">
+      <h4 class="alert-heading">Error</h4>
+      <p>Error status: ${response.status}</p>
+      <p>Error message: (${response.statusText})</p>
+    </div>
+  `
+}
+
+
 window.addEventListener('DOMContentLoaded', async () => {
 
     const url = 'http://localhost:8000/api/conferences/';
 
     try {
       const response = await fetch(url);
+      console.log(response)
 
       if (!response.ok) {
         // Figure out what to do when the response is bad
+        const errorMessage = createError(status, statusText)
+        const status = response.status;
+        const statusText = response.statusText;
+        console.log(errorMessage)
       } else {
         const data = await response.json();
         const columns = document.querySelectorAll('.col')
@@ -52,7 +69,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             const ends = oldEnds.toLocaleDateString("en-US")
 
             const html = createCard(title, description, pictureUrl, starts, ends, location);
-            console.log(html);
             columns[columnIndex].innerHTML += html;
             columnIndex = (columnIndex + 1) % columnsPerRow;
           }
@@ -60,7 +76,10 @@ window.addEventListener('DOMContentLoaded', async () => {
 
       }
     } catch (e) {
-      // Figure out what to do if an error is raised
+      const errorMessage = createError(status, statusText)
+      const status = response.status;
+      const statusText = response.statusText;
+      console.log(errorMessage)
     }
 
   });
