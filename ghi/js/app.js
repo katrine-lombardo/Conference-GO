@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
           if (detailResponse.ok) {
             const details = await detailResponse.json();
-            console.log(details)
+            // console.log(details)
             const title = details.conference.name;
             const description = details.conference.description;
             const location = details.conference.location.name

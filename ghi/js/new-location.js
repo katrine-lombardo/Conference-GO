@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   // If the response is ok then get the data using .json method and await
   if (response.ok) {
     const data = await response.json();
-    console.log(data);
+
 
     // ------- STATE DROPDOWN MENU -------
     const selectTag = document.getElementById("state");
