@@ -58,7 +58,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
           if (detailResponse.ok) {
             const details = await detailResponse.json();
-            // console.log(details)
             const title = details.conference.name;
             const description = details.conference.description;
             const location = details.conference.location.name
@@ -76,10 +75,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
       }
     } catch (e) {
-      const errorMessage = createError(status, statusText)
-      const status = response.status;
-      const statusText = response.statusText;
-      console.log(errorMessage)
+      const row = document.querySelector(".row");
+      row.innerHTML = `<div class="alert alert-danger" role="alert">A simple danger alert-check it out!</div>`
     }
 
   });

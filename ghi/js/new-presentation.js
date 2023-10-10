@@ -1,9 +1,7 @@
 // Add event listener for when DOM loads
 window.addEventListener("DOMContentLoaded", async () => {
   // Declare a variable to hold URL for the API
-  confId = Conference.objects.get("conference_id")
-  console.log(confId)
-  const url = `http://localhost:8000/conferences/${confId}/presentations/`;
+  const url = `http://localhost:8000/api/conferences/`;
 
   // Fetch the URL (use await to convert the promise)
   const response = await fetch(url);
@@ -11,7 +9,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   // If the response is ok then get the data using .json method and await
   if (response.ok) {
     const data = await response.json();
-    console.log(data)
 
     // ------- CONFERENCE DROPDOWN MENU -------
     const selectTag = document.getElementById("conference");
@@ -32,7 +29,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       console.log("need to submit the form data");
 
       // ------- SEND DATA TO SERVER -------
-      const presentationUrl = `http://localhost:8000/presentations/${selectTag.selectedIndex}`;
+      const presentationUrl = `http://localhost:8000/api/conferences/${formData.get("conference")}/presentations/`;
       const fetchConfig = {
         method: "post",
         body: json,
