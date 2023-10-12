@@ -32,7 +32,7 @@ function LocationForm(props) {
   };
 
   // ------- USER INPUT STATE -------
-  const [state, setState] = useState("");
+  const [state, setState] = useState([]);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [room_count, setRoomCount] = useState("");
