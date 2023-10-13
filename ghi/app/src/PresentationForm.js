@@ -83,7 +83,7 @@ function PresentationForm () {
               <label htmlFor="title">Title</label>
             </div>
             <div className="form-floating mb-3">
-              <input value={formData.synopsis} onChange={handleFormChange} placeholder="Synopsis" required type="textarea" name="synopsis" id="synopsis" className="form-control" />
+              <textarea value={formData.synopsis} onChange={handleFormChange} placeholder="Synopsis" required type="textarea" name="synopsis" id="synopsis" className="form-control"></textarea>
               <label htmlFor="synopsis">Synopsis</label>
             </div>
             <div className="mb-3">

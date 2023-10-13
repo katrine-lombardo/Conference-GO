@@ -87,37 +87,37 @@ function ConferenceForm() {
 
             <div className="form-floating mb-3">
               {/* !-- Now, each field in our form references the same function -- */}
-              <input onChange={handleFormChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
+              <input value={formData.name} onChange={handleFormChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
               <label htmlFor="name">Name</label>
             </div>
 
             <div className="form-floating mb-3">
-              <input onChange={handleFormChange} placeholder="Starts" required type="date" name="starts" id="starts" className="form-control" />
+              <input value={formData.starts} onChange={handleFormChange} placeholder="Starts" required type="date" name="starts" id="starts" className="form-control" />
               <label htmlFor="starts">Starts</label>
             </div>
 
             <div className="form-floating mb-3">
-              <input onChange={handleFormChange} placeholder="Ends" required type="date" name="ends" id="ends" className="form-control" />
+              <input value={formData.ends} onChange={handleFormChange} placeholder="Ends" required type="date" name="ends" id="ends" className="form-control" />
               <label htmlFor="ends">Ends</label>
             </div>
 
             <div className="mb-3">
               <label htmlFor="description">Description</label>
-              <textarea onChange={handleFormChange} id="description" rows="3" name="description" className="form-control"></textarea>
+              <textarea value={formData.description} onChange={handleFormChange} id="description" rows="3" name="description" className="form-control"></textarea>
             </div>
 
             <div className="form-floating mb-3">
-              <input onChange={handleFormChange} placeholder="Maximum presentations" required type="number" name="max_presentations" id="max_presentations" className="form-control" />
+              <input value={formData.max_presentations} onChange={handleFormChange} placeholder="Maximum presentations" required type="number" name="max_presentations" id="max_presentations" className="form-control" />
               <label htmlFor="max_presentations">Maximum presentations</label>
             </div>
 
             <div className="form-floating mb-3">
-              <input onChange={handleFormChange} placeholder="Maximum attendees" required type="number" name="max_attendees" id="max_attendees" className="form-control" />
+              <input value={formData.max_attendees} onChange={handleFormChange} placeholder="Maximum attendees" required type="number" name="max_attendees" id="max_attendees" className="form-control" />
               <label htmlFor="max_attendees">Maximum attendees</label>
             </div>
 
             <div className="mb-3">
-              <select onChange={handleFormChange} required name="location" id="location" className="form-select">
+              <select value={formData.location} onChange={handleFormChange} required name="location" id="location" className="form-select">
                 <option value="">Choose a location</option>
                 {locations.map(location => {
                   return (
