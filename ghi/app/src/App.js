@@ -3,6 +3,7 @@ import AttendeesList from "./AttendeesList";
 import LocationForm from "./LocationForm";
 import AttendConferenceForm from "./AttendConferenceForm";
 import ConferenceForm from "./ConferenceForm";
+import PresentationForm from "./PresentationForm";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -28,6 +29,9 @@ export default function App(props) {
             </Route>
             <Route path="conferences">
               <Route path="new" element={<ConferenceForm />} />
+            </Route>
+            <Route path="presentations">
+              <Route path="new" element={<PresentationForm />} />
             </Route>
           </Routes>
         </div>
