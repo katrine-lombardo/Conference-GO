@@ -12,20 +12,26 @@ export default function App(props) {
   }
   return (
     <>
-      <Nav />
-      <div className="container">
-        <BrowserRouter>
+      <BrowserRouter>
+        <Nav />
+        <div className="container">
           <Routes>
-            <Route path="/conferences/new" element={<ConferenceForm />} />
-            <Route path="/attendees/new" element={<AttendConferenceForm />} />
-            <Route path="/locations/new" element={<LocationForm />} />
-            <Route
-              path="/attendees"
-              element={<AttendeesList attendees={props.attendees} />}
-            />
+            <Route path="" index element={<App />} >
+
+            </Route>
+            <Route path="locations">
+              <Route path="new" element={<LocationForm />} />
+            </Route>
+            <Route path="attendees">
+              <Route path="new" element={<AttendConferenceForm />} />
+              <Route path="" index element={<AttendeesList attendees={props.attendees} />}/>
+            </Route>
+            <Route path="conferences">
+              <Route path="new" element={<ConferenceForm />} />
+            </Route>
           </Routes>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
     </>
   );
 }
