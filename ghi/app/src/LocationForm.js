@@ -1,11 +1,7 @@
 import React, {useEffect, useState } from 'react';
 
 function LocationForm () {
-  // Here is the old way of creating state hooks for every
-  // property. Can you refactor this to make it into a single
-  // data object like the ConferenceForm() above?
   const [states, setStates] = useState([]);
-
   const[formData, setFormData] = useState({
     name: '',
     city: '',
@@ -28,7 +24,7 @@ function LocationForm () {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const locationUrl = 'http://localhost:8000/api/locations/';
+    const url = 'http://localhost:8000/api/locations/';
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(formData),
@@ -36,21 +32,19 @@ function LocationForm () {
         'Content-Type': 'application/json',
       },
     };
-    const response = await fetch(locationUrl, fetchConfig);
+    const response = await fetch(url, fetchConfig);
 
 
     if (response.ok) {
       setFormData({
         name: '',
         city: '',
-        roomCount: '',
+        room_count: '',
         state: '',
-      })
+      });
     }
   }
 
-  // How can we refactor these handleChange methods to make
-  // a single method, like the ConferenceForm above?
   const handleFormChange = (e) => {
     const value = e.target.value;
     const inputName = e.target.name;
@@ -72,7 +66,7 @@ function LocationForm () {
               <label htmlFor="name">Name</label>
             </div>
             <div className="form-floating mb-3">
-              <input value={formData.roomCount} onChange={handleFormChange} placeholder="Room count" required type="number" name="room_count" id="room_count" className="form-control" />
+              <input value={formData.room_count} onChange={handleFormChange} placeholder="Room count" required type="number" name="room_count" id="room_count" className="form-control" />
               <label htmlFor="room_count">Room count</label>
             </div>
             <div className="form-floating mb-3">
