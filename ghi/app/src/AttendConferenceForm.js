@@ -1,12 +1,14 @@
 import React, {useEffect, useState } from 'react';
 
 function AttendConferenceForm() {
-
-  const [conference, setConference] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [conferences, setConferences] = useState([]);
   const [hasSignedUp, setHasSignedUp] = useState(false);
+  const [formData, setFormData] = useState ({
+    conference: '',
+    name: '',
+    email: '',
+  })
+
 
   const fetchData = async () => {
     const url = 'http://localhost:8000/api/conferences/';
@@ -14,6 +16,7 @@ function AttendConferenceForm() {
     if (response.ok) {
       const data = await response.json();
       setConferences(data.conferences);
+      setHasSignedUp(data.has_account);
     }
   }
 
@@ -21,44 +24,55 @@ function AttendConferenceForm() {
     fetchData();
   }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = {};
-    data.conference = conference;
-    data.name = name;
-    data.email = email;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const attendeeUrl = 'http://localhost:8001/api/attendees/';
+    const url = 'http://localhost:8001/api/attendees/';
     const fetchOptions = {
       method: 'post',
-      body: JSON.stringify(data),
+      body: JSON.stringify(formData),
       headers: {
         'Content-Type': 'application/json',
       },
     };
-    const attendeeResponse = await fetch(attendeeUrl, fetchOptions);
+    const attendeeResponse = await fetch(url, fetchOptions);
+
     if (attendeeResponse.ok) {
-      setConference('');
-      setName('');
-      setEmail('');
-      setHasSignedUp(true);
+      setFormData({
+        conference: '',
+        name: '',
+        email: '',
+      })
     }
   }
 
-  const handleChangeConference = (event) => {
-    const value = event.target.value;
-    setConference(value);
+  const handleFormChange = (e) => {
+    const value = e.target.value;
+    const inputName = e.target.name;
+
+    setFormData({
+      ...formData,
+      [inputName]: value
+    });
   }
 
-  const handleChangeName = (event) => {
-    const value = event.target.value;
-    setName(value);
-  }
 
-  const handleChangeEmail = (event) => {
-    const value = event.target.value;
-    setEmail(value);
-  }
+
+
+  // const handleChangeConference = (event) => {
+  //   const value = event.target.value;
+  //   setConference(value);
+  // }
+
+  // const handleChangeName = (event) => {
+  //   const value = event.target.value;
+  //   setName(value);
+  // }
+
+  // const handleChangeEmail = (event) => {
+  //   const value = event.target.value;
+  //   setEmail(value);
+  // }
 
   // CSS classes for rendering
   let spinnerClasses = 'd-flex justify-content-center mb-3';
@@ -84,7 +98,7 @@ function AttendConferenceForm() {
         <div className="col">
           <div className="card shadow">
             <div className="card-body">
-              <form className={formClasses} onSubmit={handleSubmit} id="create-attendee-form">
+              <form onSubmit={handleSubmit} className={formClasses}  id="create-attendee-form">
                 <h1 className="card-title">It's Conference Time!</h1>
                 <p className="mb-3">
                   Please choose which conference
@@ -96,7 +110,7 @@ function AttendConferenceForm() {
                   </div>
                 </div>
                 <div className="mb-3">
-                  <select onChange={handleChangeConference} name="conference" id="conference" className={dropdownClasses} required>
+                  <select value={formData.conference} onChange={handleFormChange} name="conference" id="conference" className={dropdownClasses} required>
                     <option value="">Choose a conference</option>
                     {conferences.map(conference => {
                       return (
@@ -111,13 +125,13 @@ function AttendConferenceForm() {
                 <div className="row">
                   <div className="col">
                     <div className="form-floating mb-3">
-                      <input onChange={handleChangeName} required placeholder="Your full name" type="text" id="name" name="name" className="form-control" />
+                      <input value={formData.name} onChange={handleFormChange} required placeholder="Your full name" type="text" id="name" name="name" className="form-control" />
                       <label htmlFor="name">Your full name</label>
                     </div>
                   </div>
                   <div className="col">
                     <div className="form-floating mb-3">
-                      <input onChange={handleChangeEmail} required placeholder="Your email address" type="email" id="email" name="email" className="form-control" />
+                      <input value={formData.email} onChange={handleFormChange} required placeholder="Your email address" type="email" id="email" name="email" className="form-control" />
                       <label htmlFor="email">Your email address</label>
                     </div>
                   </div>

@@ -25,8 +25,8 @@ function ConferenceForm() {
     fetchData();
   }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const url = 'http://localhost:8000/api/conferences/';
     const fetchConfig = {
       method: "post",

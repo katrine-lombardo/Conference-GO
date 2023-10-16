@@ -9,15 +9,36 @@ root.render(
 );
 
 
-async function loadAttendees() {
-  const response = await fetch('http://localhost:8001/api/attendees/');
-  if (response.ok) {
-    const data = await response.json();
+async function loadAttendeesAndConferences() {
+  const response1 = await fetch('http://localhost:8001/api/attendees/');
+  const response2 = await fetch('http://localhost:8000/api/conferences/');
+  if (response1.ok && response2.ok) {
+    const data1 = await response1.json();
+    const data2 = await response2.json();
     root.render(
-        <App attendees={data.attendees} />
+      <React.StrictMode>
+        <App attendees={data1.attendees} conferences={data2.conferences} />
+      </React.StrictMode>
     );
   } else {
-    console.error(response);
+    console.error(response1);
+    console.error(response2);
   }
 }
-loadAttendees();
+loadAttendeesAndConferences();
+
+
+// async function loadConferences() {
+
+//   if (response.ok) {
+//     const data = await response.json();
+//     root.render(
+//       <React.StrictMode>
+//         <App conferences={data.conferences} />
+//       </React.StrictMode>
+//     );
+//   } else {
+//     console.error(response);
+//   }
+// }
+// loadConferences();

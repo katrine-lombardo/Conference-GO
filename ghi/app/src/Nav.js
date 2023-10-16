@@ -21,47 +21,32 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                aria-current="page"
-                to="/"
-              >
+              <NavLink className="nav-link" aria-current="page" to="/">
                 Home
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                aria-current="page"
-                to="/locations/new "
-              >
-                New location
+              <NavLink className="nav-link" aria-current="page" to="/locations/new ">
+                New Location
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                aria-current="page"
-                to="/conferences/new"
-              >
-                New conference
+              <NavLink className="nav-link" aria-current="page" to="/conferences">
+                Conference List
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                aria-current="page"
-                to="/presentations/new"
-              >
+              <NavLink className="nav-link" aria-current="page" to="/conferences/new">
+                New Conference
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/presentations/new">
                 New Presentation
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                aria-current="page"
-                to="/attendees"
-              >
+              <NavLink className="nav-link" aria-current="page" to="/attendees">
                 Attendees List
               </NavLink>
             </li>
