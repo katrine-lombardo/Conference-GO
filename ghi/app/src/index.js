@@ -26,19 +26,3 @@ async function loadAttendeesAndConferences() {
   }
 }
 loadAttendeesAndConferences();
-
-
-// async function loadConferences() {
-
-//   if (response.ok) {
-//     const data = await response.json();
-//     root.render(
-//       <React.StrictMode>
-//         <App conferences={data.conferences} />
-//       </React.StrictMode>
-//     );
-//   } else {
-//     console.error(response);
-//   }
-// }
-// loadConferences();

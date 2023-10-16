@@ -16,7 +16,6 @@ function AttendConferenceForm() {
     if (response.ok) {
       const data = await response.json();
       setConferences(data.conferences);
-      setHasSignedUp(data.has_account);
     }
   }
 
@@ -35,9 +34,9 @@ function AttendConferenceForm() {
         'Content-Type': 'application/json',
       },
     };
-    const attendeeResponse = await fetch(url, fetchOptions);
+    const response = await fetch(url, fetchOptions);
 
-    if (attendeeResponse.ok) {
+    if (response.ok) {
       setFormData({
         conference: '',
         name: '',
@@ -55,24 +54,6 @@ function AttendConferenceForm() {
       [inputName]: value
     });
   }
-
-
-
-
-  // const handleChangeConference = (event) => {
-  //   const value = event.target.value;
-  //   setConference(value);
-  // }
-
-  // const handleChangeName = (event) => {
-  //   const value = event.target.value;
-  //   setName(value);
-  // }
-
-  // const handleChangeEmail = (event) => {
-  //   const value = event.target.value;
-  //   setEmail(value);
-  // }
 
   // CSS classes for rendering
   let spinnerClasses = 'd-flex justify-content-center mb-3';
